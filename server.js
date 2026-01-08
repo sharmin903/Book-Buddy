@@ -5,17 +5,34 @@ const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const indexRouter = require('./routes/index')
+const authorRouter = require('./routes/authors')
 const mongoose = require('mongoose')
+const bodyParser =require('body-parser')
 
+
+//database connection
 mongoose.connect(process.env.DATABASE_URL)
 const db = mongoose.connection
 db.on('error',error => console.error(error))
 db.once('open',()=>console.log('Connected to Mongoose'))
-app.use(expressLayouts)
+
+//view engine setup
 app.set('view engine','ejs')
 app.set('views',__dirname + '/views')
 app.set('layout','layouts/layout')
+app.use(expressLayouts)
 app.use(express.static('public'))
-app.use('/', indexRouter)
 
-app.listen(process.env.PORT || 3000)
+//body parser middleware - must be before routes
+app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
+
+
+
+//routes - after middleware
+app.use('/', indexRouter)
+app.use('/authors', authorRouter)
+
+//start server
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server running on port ${process.env.PORT || 3000}`)
+})
