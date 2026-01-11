@@ -22,6 +22,7 @@ app.set('views',__dirname + '/views')
 app.set('layout','layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
 
 //body parser middleware - must be before routes
 app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
