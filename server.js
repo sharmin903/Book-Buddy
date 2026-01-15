@@ -6,6 +6,7 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
+const booksRouter = require('./routes/books')
 const mongoose = require('mongoose')
 const bodyParser =require('body-parser')
 
@@ -32,6 +33,7 @@ app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
 //routes - after middleware
 app.use('/', indexRouter)
 app.use('/authors', authorRouter)
+app.use('/books', booksRouter)
 
 //start server
 app.listen(process.env.PORT || 3000, () => {

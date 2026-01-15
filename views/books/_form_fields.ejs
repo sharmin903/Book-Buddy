@@ -1,0 +1,11 @@
+<label>Title</label>
+<input type="text" id="title" name="title" value="<%= books.title %>">
+<label>Author</label>
+<select name="author" id=""> 
+    <% author.array.forEach(author => {%>
+        <% if (author.id == book.author) {%>
+        <option selected value="<%= author.id %>"><%= author.name %></option>
+        <% } else { %>
+        <option value="<%= author.id %>"><%= author.name %></option>
+        <% } %>
+    <% }); %></select>
