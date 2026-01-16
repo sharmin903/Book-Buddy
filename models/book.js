@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const coverImageBasePath = 'upload/bookCovers'
 const bookSchema = new mongoose.Schema({
     titel:{
         type:String,
@@ -33,3 +34,4 @@ const bookSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('Book',bookSchema)
+module.exports.coverImageBasePath = coverImageBasePath 
