@@ -1,7 +1,7 @@
 const express = require('express')
 const router= express.Router()
 const Author = require('../models/author')
-const author = require('../models/author')
+const Book = require('../models/author')
 //all author routes
 router.get('/', async (req,res)=>{
     let searchOptions = {}
